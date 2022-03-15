@@ -22,7 +22,6 @@
  */ 
 
 public class Solution {
-
     public static int brokenSearch(int[] arr, int k) {
         int leftElement = 0;
         int rightElement = arr.length - 1;
