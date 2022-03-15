@@ -1,37 +1,40 @@
+// Сложность алгоритма: O(n) — линейная зависимость
+
 import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        int k = scan.nextInt();
-        int[] array = new int[16];
-        for (int i = 0; i < 4; i++) {
+        int numberKey = scan.nextInt();
+        int[] simulatorField = new int[16];
+        final int line = 4;
+        for (int i = 0; i < line; i++) {
             String s = scan.next();
-            for (int j = 0; j < 4; j++) {
-                char c = s.charAt(j);
-                if (c == '.') {
-                    array[i * 4 + j] = 0;
+            for (int j = 0; j < line; j++) {
+                char sym = s.charAt(j);
+                if (sym == '.') {
+                    simulatorField[i * line + j] = 0;
                 } else {
-                    array[i * 4 + j] = Integer.parseInt(c + "");
+                    simulatorField[i * line + j] = Integer.parseInt(sym + "");
                 }
             }
         }
 
-        int[] count = new int[10];
+        int[] numbersBox = new int[10];
         int temp;
-        int num = k * 2;
-        for (int j : array) {
+        final int num = numberKey * 2;
+        for (int j : simulatorField) {
             temp = j;
-            count[temp]++;
+            numbersBox[temp]++;
         }
 
         int result = 0;
-        for (int i = 1; i < count.length; i++) {
-            if (count[i] >= 1) {
-                int z = count[i];
-                if (z <= num) {
-                    z = 1;
-                    result += z;
+        for (int i = 1; i < numbersBox.length; i++) {
+            if (numbersBox[i] >= 1) {
+                int sumDigits = numbersBox[i];
+                if (sumDigits <= num) {
+                    sumDigits = 1;
+                    result += sumDigits;
                 }
             }
         }
