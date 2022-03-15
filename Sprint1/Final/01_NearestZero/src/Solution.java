@@ -12,7 +12,6 @@ class Solution {
         StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
         final int maxStreetLength = 1000000;
         int street = maxStreetLength;
-
         int[] houseNumbers = new int[streetLength];
         for (int i = 0; i < streetLength; i++) {
             houseNumbers[i] = Integer.parseInt(tokenizer.nextToken());
