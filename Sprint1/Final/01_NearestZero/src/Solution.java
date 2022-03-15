@@ -1,39 +1,43 @@
+// Сложность алгоритма: O(n) — линейная зависимость
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-class Solution {
+class TestFinal1 {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        int size = Integer.parseInt(bufferedReader.readLine());
-        StringTokenizer tokenizer = new StringTokenizer(bufferedReader.readLine());
-        int[] array = new int[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = Integer.parseInt(tokenizer.nextToken());
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int streetLength = Integer.parseInt(reader.readLine());
+        StringTokenizer tokenizer = new StringTokenizer(reader.readLine());
+        final int maxStreetLength = 1000000;
+        int street = maxStreetLength;
+
+        int[] houseNumbers = new int[streetLength];
+        for (int i = 0; i < streetLength; i++) {
+            houseNumbers[i] = Integer.parseInt(tokenizer.nextToken());
         }
 
-        int[] arrR = new int[size];
-        int number = 1000000;
-        for (int i = size - 1; i >= 0; i--) {
-            if (array[i] == 0) {
-                number = 0;
+        int[] passArrayRight = new int[streetLength];
+        for (int i = streetLength - 1; i >= 0; i--) {
+            if (houseNumbers[i] == 0) {
+                street = 0;
             } else {
-                number += 1;
+                street += 1;
             }
-            arrR[i] = number;
+            passArrayRight[i] = street;
         }
 
-        number = 1000000;
+        street = maxStreetLength;
         StringBuilder builder = new StringBuilder();
-        for (int j = 0; j < size; j++) {
-            if (array[j] == 0) {
-                number = 0;
+        for (int j = 0; j < streetLength; j++) {
+            if (houseNumbers[j] == 0) {
+                street = 0;
             } else {
-                number += 1;
+                street += 1;
             }
-            int s = Math.min(number, arrR[j]);
-            builder.append(s).append(" ");
+            int smallNumber = Math.min(street, passArrayRight[j]);
+            builder.append(smallNumber).append(" ");
         }
         System.out.println(builder);
     }
