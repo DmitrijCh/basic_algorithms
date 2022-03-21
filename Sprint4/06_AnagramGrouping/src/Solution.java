@@ -26,7 +26,6 @@ public class Solution {
         for (Map.Entry<String, ArrayList<Integer>> pair : anagramIndexes.entrySet()) {
             indexes.add(pair.getValue());
         }
-
         for (ArrayList<Integer> integers : indexes) {
             Collections.sort(integers);
         }
@@ -44,11 +43,9 @@ public class Solution {
                 index1++;
                 index2++;
             }
-
             if (index1 < array1.size()) {
                 return -1;
             }
-
             if (index2 < array2.size()) {
                 return 1;
             }
@@ -62,7 +59,6 @@ public class Solution {
             }
             stringBuilder.append("\n");
         }
-
         System.out.println(stringBuilder);
     }
 
