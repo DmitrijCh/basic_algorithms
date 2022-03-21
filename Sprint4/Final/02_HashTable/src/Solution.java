@@ -1,0 +1,184 @@
+/* Принцип работы алгоритма: 
+Хэш-таблица содержит в себе элементы, состоящие из ключа и значения. Все реализованные операции основаны на: 
+1) получении значения от ключа по модулю, равному количество корзин; 
+2) обращении к корзине с соответствующим номером (индекс в массиве); 
+3) поиск элемента в корзине (поиск по связанному списку). 
+В процессе работы могут возникать коллизии (в одной корзине находятся элементы с одинаковым значением 
+ключа по модулю. Разрешение коллизий в данном алгоритме реализовано с помощью метода цепочек. То есть корзина 
+представляет собой связанный список с головой в ячейке массива. 
+*/ 
+ 
+/* ВРЕМЕННАЯ СЛОЖНОСТЬ алгоритма O(1) 
+Временная сложность будет складываться из перехода в нужную корзину (O(1) - получение головы связанного списка из 
+массива) и проход по связанному списку. 
+В худшем случае (когда количество корзин и ключи входных данных будут давать одно и то же значение номера корзины) 
+временная сложность будет складываться из прохода по всем входным данным (все входные данные лежат в одном 
+связанном списке). Таким образов в худшем случае временная сложность будет O(N). Сложность в среднем случае 
+будет O(1). 
+*/ 
+ 
+/* ПРОСТРАНСТВЕННАЯ СЛОЖНОСТЬ алгоритма  O(N + M) 
+Задействуется память в размере массива размером, равным количеству корзин. И память на связанные списке в корзинах. 
+Таким образом пространственная сложность будет O(N + M), где M - количество корзин. 
+*/
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        HashTable table = new HashTable();
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder stringBuilder = new StringBuilder(" ");
+        int commandsQuantity = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < commandsQuantity; i++) {
+            StringTokenizer line = new StringTokenizer(bufferedReader.readLine());
+            hashTable(table, line, stringBuilder);
+        }
+        System.out.println(stringBuilder);
+    }
+
+    private static void hashTable(HashTable table, StringTokenizer line, StringBuilder stringBuffer) {
+        String command = line.nextToken();
+        int key = Integer.parseInt(line.nextToken());
+        int value;
+        switch (command) {
+            case ("put"):
+                value = Integer.parseInt(line.nextToken());
+                table.put(key, value);
+                break;
+            case ("get"):
+                try {
+                    stringBuffer.append(table.get(key)).append("\n");
+                } catch (NoSuchElementException e) {
+                    stringBuffer.append("None").append("\n");
+                }
+                break;
+            case ("delete"):
+                try {
+                    stringBuffer.append(table.delete(key)).append("\n");
+                } catch (NoSuchElementException e) {
+                    stringBuffer.append("None").append("\n");
+                }
+        }
+    }
+}
+
+class Node {
+    private Node next;
+    private final int key;
+    private int value;
+
+    public Node(Node next, int key, int value) {
+        this.next = next;
+        this.key = key;
+        this.value = value;
+    }
+
+    public Node getNext() {
+        return next;
+    }
+
+    public int getKey() {
+        return key;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
+
+    public int getValue() {
+        return value;
+    }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
+}
+
+class HashTable {
+    public Node[] table;
+    public static final int savedKeys = 100000;
+
+    public HashTable() {
+        table = new Node[savedKeys];
+    }
+
+    public void put(int key, int value) {
+        if (table[hash(key)] == null) {
+            Node newNode = new Node(null, key, value);
+            table[hash(key)] = newNode;
+            return;
+        }
+
+        Node previousNode = table[hash(key)];
+        if (previousNode.getKey() == key) {
+            previousNode.setValue(value);
+            return;
+        }
+
+        Node nextNode = table[hash(key)].getNext();
+        while (nextNode != null) {
+            if (nextNode.getKey() == key) {
+                nextNode.setValue(value);
+                return;
+            }
+            previousNode = nextNode;
+            nextNode = previousNode.getNext();
+        }
+        Node newNode = new Node(null, key, value);
+        previousNode.setNext(newNode);
+    }
+
+    public int get(int key) throws NoSuchElementException {
+        chek(key);
+        Node previousNode = table[hash(key)];
+        if (previousNode.getKey() == key) {
+            return previousNode.getValue();
+        }
+
+        Node nextNode = table[hash(key)].getNext();
+        while (nextNode != null) {
+            if (nextNode.getKey() == key) {
+                return nextNode.getValue();
+            }
+            previousNode = nextNode;
+            nextNode = previousNode.getNext();
+        }
+        throw new NoSuchElementException();
+    }
+
+    public int delete(int key) throws NoSuchElementException {
+        chek(key);
+        Node previousNode = table[hash(key)];
+        if (previousNode.getKey() == key) {
+            table[hash(key)] = previousNode.getNext();
+            return previousNode.getValue();
+        }
+
+        Node nextNode = table[hash(key)].getNext();
+        while (nextNode != null) {
+            if (nextNode.getKey() == key) {
+                int result = nextNode.getValue();
+                previousNode.setNext(nextNode.getNext());
+                return result;
+            }
+            previousNode = nextNode;
+            nextNode = previousNode.getNext();
+        }
+        throw new NoSuchElementException();
+    }
+
+    private void chek(int key) {
+        if (table[hash(key)] == null) {
+            throw new NoSuchElementException();
+        }
+    }
+
+    private int hash(int key) {
+        return key % table.length;
+    }
+} 
