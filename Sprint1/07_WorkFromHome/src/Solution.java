@@ -16,6 +16,7 @@ public class Solution {
                 binary.append(0);
                 number >>= 1;
             }
+            number >>= 1;
         }
         System.out.println(binary.reverse());
     }
