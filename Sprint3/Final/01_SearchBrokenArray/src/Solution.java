@@ -19,7 +19,7 @@
  
 /* Пространственная сложность алгоритма: O(n)
  Во время выполнения не создается дополнительных структур данных кроме исходного массива.
- */ 
+ */
 
 public class Solution {
     public static int brokenSearch(int[] arr, int k) {
@@ -38,8 +38,8 @@ public class Solution {
                     leftElement = middleElement + 1;
                 }
             }
-            if(arr[rightElement] >= arr[middleElement]) {
-                if (arr[rightElement] >= k && arr[middleElement] >= k ) {
+            if (arr[rightElement] >= arr[middleElement]) {
+                if (arr[rightElement] >= k && arr[middleElement] >= k) {
                     rightElement = middleElement - 1;
                 } else {
                     leftElement = middleElement + 1;

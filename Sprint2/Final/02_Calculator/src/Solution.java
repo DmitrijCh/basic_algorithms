@@ -50,28 +50,28 @@ public class Solution {
             }
             switch (specialChar) {
                 case "+" -> {
-                    firstElement = Integer.parseInt(stack.pop()); // извлекается первый элемент
-                    secondElement = Integer.parseInt(stack.pop()); // извлекается второй элемент
-                    expression = secondElement + firstElement; // производится нужная операция
-                    stack.push(Integer.toString(expression)); // преобразовать получившиеся число в строку и сохранить обратно в стек
+                    firstElement = Integer.parseInt(stack.pop());
+                    secondElement = Integer.parseInt(stack.pop());
+                    expression = secondElement + firstElement;
+                    stack.push(Integer.toString(expression));
                 }
                 case "-" -> {
-                    firstElement = Integer.parseInt(stack.pop()); // извлекается первый элемент
-                    secondElement = Integer.parseInt(stack.pop()); // извлекается второй элемент
-                    expression = secondElement - firstElement; // производится нужная операция
-                    stack.push(Integer.toString(expression)); // преобразовать получившиеся число в строку и сохранить обратно в стек
+                    firstElement = Integer.parseInt(stack.pop());
+                    secondElement = Integer.parseInt(stack.pop());
+                    expression = secondElement - firstElement;
+                    stack.push(Integer.toString(expression));
                 }
                 case "*" -> {
-                    firstElement = Integer.parseInt(stack.pop()); // извлекается первый элемент
-                    secondElement = Integer.parseInt(stack.pop()); // извлекается второй элемент
-                    expression = firstElement * secondElement; // производится нужная операция
-                    stack.push(Integer.toString(expression)); // преобразовать получившиеся число в строку и сохранить обратно в стек
+                    firstElement = Integer.parseInt(stack.pop());
+                    secondElement = Integer.parseInt(stack.pop());
+                    expression = firstElement * secondElement;
+                    stack.push(Integer.toString(expression));
                 }
                 case "/" -> {
-                    firstElement = Integer.parseInt(stack.pop()); // извлекается первый элемент
-                    secondElement = Integer.parseInt(stack.pop()); // извлекается второй элемент
+                    firstElement = Integer.parseInt(stack.pop());
+                    secondElement = Integer.parseInt(stack.pop());
                     expression = (int) Math.round(Math.floor((double) secondElement / firstElement));
-                    stack.push(Integer.toString(expression)); // преобразовать получившиеся число в строку и сохранить обратно в стек
+                    stack.push(Integer.toString(expression));
                 }
                 default -> {
                 }

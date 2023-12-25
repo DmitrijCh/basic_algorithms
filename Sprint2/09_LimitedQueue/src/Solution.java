@@ -36,7 +36,7 @@ public class Solution {
     }
 
     public static void pop() {
-        if (queue.size() == 0) {
+        if (queue.isEmpty()) {
             System.out.println("None");
             return;
         }
@@ -45,7 +45,7 @@ public class Solution {
     }
 
     public static void peek() {
-        if (queue.size() == 0) {
+        if (queue.isEmpty()) {
             System.out.println("None");
             return;
         }
