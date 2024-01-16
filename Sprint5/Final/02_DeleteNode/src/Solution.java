@@ -28,7 +28,6 @@
 Пространственная сложность составляет O(N), где N - количество элементов в дереве. Дополнительные структуры данных не создаются. 
 */
 
-
 public class Solution {
     public static Node remove(Node root, int key) {
         if (root == null) {
@@ -119,40 +118,40 @@ public class Solution {
     }
 
     /**
-     * Comment it before submitting 
+     * Comment it before submitting
      * private static class Node {
-     * private int value; 
-     * private Node left; 
-     * private Node right; 
-     * <p> 
+     * private int value;
+     * private Node left;
+     * private Node right;
+     * <p>
      * Node(Node left, Node right, int value) {
-     * this.left = left; 
-     * this.right = right; 
-     * this.value = value; 
+     * this.left = left;
+     * this.right = right;
+     * this.value = value;
      * }
-     * <p> 
+     * <p>
      * public int getValue() {
-     * return value; 
+     * return value;
      * }
-     * <p> 
+     * <p>
      * public Node getRight() {
-     * return right; 
+     * return right;
      * }
-     * <p> 
+     * <p>
      * public void setRight(Node right) {
-     * this.right = right; 
+     * this.right = right;
      * }
-     * <p> 
+     * <p>
      * public Node getLeft() {
-     * return left; 
+     * return left;
      * }
-     * <p> 
+     * <p>
      * public void setLeft(Node left) {
-     * this.left = left; 
+     * this.left = left;
      * }
-     * <p> 
+     * <p>
      * public void setValue(int value) {
-     * this.value = value; 
+     * this.value = value;
      * }
      * }
      **/

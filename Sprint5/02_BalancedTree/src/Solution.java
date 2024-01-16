@@ -3,7 +3,7 @@ public class Solution {
         return DFS(head) != -1;
     }
 
-    private static int DFS (Node node) {
+    private static int DFS(Node node) {
         if (node == null) {
             return 0;
         }

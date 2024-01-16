@@ -22,7 +22,7 @@ public class Solution {
         writer.flush();
     }
 
-    private static void test() throws IOException{
+    private static void test() throws IOException {
         Node node1 = new Node(null, null, 2);
         Node node2 = new Node(null, node1, 1);
         Node node3 = new Node(null, null, 8);
@@ -33,6 +33,5 @@ public class Solution {
         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out));
         printRange(node7, 2, 8, writer);
         writer.flush();
-        // expected output: 2 5 8 8
     }
 }
